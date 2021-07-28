@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: app2
+  sleuth:
+    sampler:
+      rate: 10
+  zipkin:
+    service:
+      name: app2
+    base-url: http://localhost:9411/
+  datasource:
+    url: jdbc:mysql://localhost:3306/sample?queryInterceptors=brave.mysql8.TracingQueryInterceptor&exceptionInterceptors=brave.mysql8.TracingExceptionInterceptor&zipkinServiceName=app2-mysql
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
